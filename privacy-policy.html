@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Privacy Policy — Super Reminder</title>
+<style>
+  :root { --ink:#1a1a1a; --muted:#5a5a5a; --line:#e5e5e5; --accent:#2563eb; --bg:#ffffff; --code:#f2f2f2; }
+  * { box-sizing:border-box; }
+  body { margin:0; background:var(--bg); color:var(--ink);
+    font:16px/1.65 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+    -webkit-text-size-adjust:100%; }
+  .wrap { max-width:720px; margin:0 auto; padding:32px 20px 64px; }
+  nav { display:flex; gap:18px; flex-wrap:wrap; font-size:14px; padding-bottom:18px;
+    margin-bottom:24px; border-bottom:1px solid var(--line); }
+  nav a { color:var(--muted); text-decoration:none; }
+  nav a:hover { color:var(--accent); }
+  nav a.active { color:var(--ink); font-weight:600; }
+  h1 { font-size:28px; line-height:1.25; margin:0 0 6px; }
+  h2 { font-size:19px; margin:34px 0 10px; }
+  p { margin:0 0 16px; }
+  ul { margin:0 0 16px; padding-left:22px; }
+  li { margin:0 0 8px; }
+  a { color:var(--accent); overflow-wrap:anywhere; }
+  code { background:var(--code); padding:1px 5px; border-radius:4px; font-size:0.9em;
+    font-family:ui-monospace,SFMono-Regular,Menlo,monospace; }
+  hr { border:0; border-top:1px solid var(--line); margin:28px 0; }
+  strong { font-weight:600; }
+  footer { margin-top:44px; padding-top:20px; border-top:1px solid var(--line);
+    font-size:13px; color:var(--muted); }
+  @media (prefers-color-scheme: dark) {
+    :root { --ink:#e8e8e8; --muted:#9a9a9a; --line:#2a2a2a; --accent:#6ea8ff; --bg:#141414; --code:#242424; }
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+<nav><a href="privacy-policy.html" class="active">Privacy Policy</a> <a href="terms-of-use.html">Terms of Use</a> <a href="support.html">Support</a></nav>
+<h1>Privacy Policy for Super Reminder</h1>
+<p><strong>Effective date:</strong> [Your submission date]</p>
+<p>Super Reminder is a simple app with a simple promise: never miss a meeting again. That promise depends on trust, so here's exactly what the app does with your data — in plain English, no jargon, no fine-print surprises.</p>
+<p>The short version: your calendar stays on your iPhone. We don't have an account system, we don't run ads, we don't track you, and we don't sell anything. The only thing that leaves your device is a technical "push token" (plus a few basic technical details about the app) that lets our server nudge the app awake so your alerts stay reliable. Details below.</p>
+<hr>
+<h2>Who we are</h2>
+<p>Super Reminder is developed by Sean Mooney ("we," "us," or "our"). If you have any questions about this policy or your privacy, contact us at seandev54321@gmail.com.</p>
+<hr>
+<h2>What Super Reminder does</h2>
+<p>Super Reminder reads the events on your iPhone's calendar and schedules a sequence of escalating notifications before each one — a buzz, optional repeated "ping" sounds, building to a "Go time" alert right at the start — so an appointment is genuinely hard to miss. You control the timing, the number of buzzes and pings, and the sound tone for each event. Everything about <em>when</em> and <em>how</em> you get alerted is decided and stored on your device.</p>
+<hr>
+<h2>What data stays on your device (and never leaves it)</h2>
+<p><strong>Your calendar contents.</strong> With your permission, Super Reminder reads your calendar through Apple's EventKit so it knows what's coming up and when. The details of your events — titles, times, locations, notes, who's invited — are used <strong>only on your iPhone</strong> to schedule your alerts. <strong>Your calendar contents never leave your device.</strong> We never see them, never upload them, and never store them on any server.</p>
+<p><strong>Your settings.</strong> Your alert timings, buzz and ping counts, chosen tones, per-event customizations, and the "remind me in X minutes" preferences are saved locally on your device using iOS's standard on-device storage (UserDefaults). These settings stay on your phone.</p>
+<p>There's <strong>no account, no login, and no sign-up.</strong> We don't ask for your name, email, phone number, or any profile information to use the app.</p>
+<hr>
+<h2>The one thing that does leave your device: your push token</h2>
+<p>To keep your alerts reliable, our server sends a silent "Cloud Refresh" push on a fixed schedule (about twice an hour) that quietly wakes the app in the background so it can re-check your calendar and re-queue your alerts. This wake-up is sent on the same schedule to every registered device; it is not adjusted based on your calendar or how busy your day is. The app does all of the calendar work entirely on your device; the server only sends the wake-up signal and has no knowledge of your calendar.</p>
+<p>For that to work, your device needs a delivery address for those pushes. That address is a <strong>push notification token</strong> (an FCM/APNs token). When the app registers for pushes — on launch and whenever the token refreshes — it sends the following to our backend (a Google Firebase Cloud Function named <code>registerDevice</code>):</p>
+<ul><li>Your <strong>push token</strong> — a device-level identifier used solely to deliver silent wake-up pushes to your device.</li><li>Your app's <strong>bundle identifier</strong>, <strong>app version</strong>, and <strong>platform</strong> ("ios") — basic technical details that help route and support the push correctly.</li></ul>
+<p>When your device registers, our backend also records two server-generated timestamps against your token: when it was first registered and when it was last seen. We use these only to operate the wake-up service and to clean up tokens that are no longer active.</p>
+<p>A push token is a <strong>device identifier, not a personal one.</strong> It isn't linked to your name, your Apple ID, your email, or your identity — because we don't collect those. It can change (for example, if you reinstall the app), and it's only useful for sending pushes to that specific device. We use it strictly to power the Cloud Refresh feature described above. We do not use it to profile you, track you across apps or websites, or build any advertising audience.</p>
+<hr>
+<h2>What we do NOT do</h2>
+<p>To be completely clear:</p>
+<ul><li><strong>No analytics.</strong> The app includes no usage analytics or telemetry. Firebase Analytics and ad services are disabled in the app's configuration, and only the Firebase Core, Cloud Messaging, and Cloud Functions components are included.</li><li><strong>No advertising.</strong> There are no ads and no ad networks in the app.</li><li><strong>No tracking.</strong> We do not track you across other companies' apps or websites, and we do not link the push token to your identity. The app does not use the advertising identifier (IDFA) or App Tracking Transparency.</li><li><strong>No selling or sharing for money.</strong> We do not sell your personal information, and we do not share it for cross-context behavioral advertising.</li></ul>
+<hr>
+<h2>Third parties who help run the service</h2>
+<p>We use a small number of trusted infrastructure providers strictly to deliver the app's functionality. They act as processors on our behalf and only receive what's technically necessary.</p>
+<ul><li><strong>Google Firebase (Cloud Messaging, Cloud Functions, and Cloud Firestore).</strong> Firebase Cloud Messaging delivers the silent wake-up pushes to your device; Firebase Cloud Functions runs the <code>registerDevice</code> endpoint that receives your push token; and your token, the basic technical details listed above, and the registration timestamps are stored in a Cloud Firestore database. Google's handling of this data is governed by their privacy policy: <a href="https://firebase.google.com/support/privacy">https://firebase.google.com/support/privacy</a> and <a href="https://policies.google.com/privacy">https://policies.google.com/privacy</a></li><li><strong>Apple (Apple Push Notification service and local notifications).</strong> Apple's APNs is the underlying system that actually delivers pushes to your iPhone, and Apple's notification system displays your local alerts. Apple's privacy policy: <a href="https://www.apple.com/legal/privacy/">https://www.apple.com/legal/privacy/</a></li></ul>
+<p>We do not send your calendar contents to any of these parties.</p>
+<hr>
+<h2>Where your data is stored</h2>
+<ul><li><strong>On your device:</strong> your calendar access, your settings, and your alert schedule — all local to your iPhone.</li><li><strong>On our backend (Google Cloud Firestore):</strong> your push token, your app's bundle identifier, app version, and platform, and the timestamps of when the token was first and last registered — stored so our server can send you the silent Cloud Refresh pushes.</li></ul>
+<hr>
+<h2>How long we keep your token</h2>
+<p>We keep your push token and the associated technical details on our backend for as long as they're needed to send you Cloud Refresh pushes.</p>
+<p><strong>You can remove your token yourself, at any time.</strong> Open the app's <strong>Settings</strong> and turn off <strong>Cloud Refresh</strong>. This immediately asks our backend to delete your token — along with the technical details and timestamps stored with it — and stops the silent wake-up pushes. You can turn Cloud Refresh back on later, which registers a fresh token.</p>
+<p>Please note how <em>automatic</em> removal works if you don't use that control: <strong>deleting the app does not immediately remove your token from our backend.</strong> iOS does not run any code when you delete an app, so we are not notified of the deletion. Instead, once your token stops working — because you deleted or reinstalled the app, or the token otherwise became invalid — the next scheduled push to that token fails, Apple/Firebase report it as no longer registered, and our backend then automatically deletes it. In practice this cleanup happens the next time a wake-up push is attempted after the token goes stale. If you'd rather we remove it for you, contact us at seandev54321@gmail.com and we will delete the corresponding record.</p>
+<hr>
+<h2>Security</h2>
+<p>We take reasonable measures to protect the limited data we handle. Communication between the app and our backend uses encrypted connections (HTTPS/TLS), and our backend runs on Google Firebase's managed infrastructure. Because we don't collect accounts, names, or your calendar contents, there is very little personal data to protect in the first place. That said, no method of transmission or storage is ever 100% secure, and we can't guarantee absolute security.</p>
+<hr>
+<h2>Children's privacy</h2>
+<p>Super Reminder is a general productivity app and is <strong>not directed at children under 13</strong> (or the equivalent minimum age in your country). We do not knowingly collect personal information from children. If you believe a child has provided us with information, contact us at seandev54321@gmail.com and we'll address it.</p>
+<hr>
+<h2>Your rights</h2>
+<p>Depending on where you live, you may have rights over your personal data — such as the right to access, correct, or delete it, or to object to or restrict certain processing. This includes rights under the EU/UK <strong>GDPR</strong> and the California <strong>CCPA/CPRA</strong>.</p>
+<p>In practice, Super Reminder holds almost no personal data about you: there's no account, and your calendar and settings stay on your device. The only thing on our servers is your push token, the basic technical details tied to it, and the registration timestamps. You can delete that token yourself at any time by turning off <strong>Cloud Refresh</strong> in the app's Settings, and you can exercise any of your other rights by contacting us at seandev54321@gmail.com. We won't discriminate against you for exercising any of these rights.</p>
+<p>Where GDPR applies, our legal basis for handling your push token is our legitimate interest in delivering the reliable, escalating reminders the app is designed to provide (and your consent, given through iOS, to receive push notifications).</p>
+<hr>
+<h2>International users</h2>
+<p>We're based in Tennessee, USA, and our infrastructure providers (Google and Apple) operate globally. Our backend is currently hosted in Google's <code>us-central1</code> region. If you use the app from outside that region, the limited data described here may be processed in countries whose data-protection laws differ from your own. By using Super Reminder, you understand that your push token may be processed in these locations for the purpose of delivering pushes.</p>
+<hr>
+<h2>Changes to this policy</h2>
+<p>We may update this policy from time to time — for example, if the app's features change. When we do, we'll revise the "Effective date" above, and for significant changes we'll make a reasonable effort to let you know (such as an in-app notice or an update on [Your support page URL]). Your continued use of the app after an update means you accept the revised policy.</p>
+<hr>
+<h2>Contact us</h2>
+<p>Questions, requests, or concerns about your privacy? Reach us at:</p>
+<ul><li><strong>Email:</strong> seandev54321@gmail.com</li><li><strong>Support:</strong> [Your support page URL]</li></ul>
+<hr>
+<h2>Governing law</h2>
+<p>This policy is governed by the laws of the State of Tennessee, USA, without regard to conflict-of-laws principles.</p>
+<hr>
+<p><em>This privacy policy is provided for transparency and is not legal advice. If you need a policy tailored to your specific legal obligations, please consult a qualified attorney.</em></p>
+<footer>© 2026 Sean Mooney · Super Reminder</footer>
+</div>
+</body>
+</html>
